@@ -1,3 +1,4 @@
+import { Button, TextField, Typography, Grid } from '@mui/material';
 import React,{ChangeEvent, FC,useState} from 'react';
 import DisplayTodo from '../DisplayTodo/DisplayTodo';
 import { ITask } from '../Interfaces';
@@ -29,26 +30,36 @@ const Todo:FC = () => {
 
     return (
         <div>
+            <Typography sx={{fontSize:'30px',color:'darkBlue',margin:'5px'}}>Note down the daily task</Typography>
            <div>
-           <input type="text" placeholder='My Task' 
+           <TextField sx={{ width:'50%',margin:'2px'}}
+           variant='standard' type="text" placeholder='My Task' 
            name='task'
            value={task} 
            onChange={handleChange}/>
            <br /> 
-           <input type="number" placeholder='Deadline(In Hours)'name='deadline'
+           <TextField sx={{ width: '50%',margin:'2px' }} variant='standard'
+           type="number" placeholder='Deadline(In Hours)'name='deadline'
            value={deadline}
            onChange={handleChange}/>
-           <br />
-           <button onClick={addingTask} type='submit'>Add Task</button>
+           <br /><br />
+           <Button sx={{width:'50%',backgroundColor:'orange',color:'white'}} onClick={addingTask} type='submit'>Add Task</Button>
           </div>
             {/* data sent to display file  */}
-            <h3>My daily task</h3>
-             {
+            <Typography sx={{fontSize:'25px',color:'gray',margin:'5px'}}>My Daily Task</Typography>
+            <Grid container spacing={{md:1}} columnSpacing={{md: 1 }} >
+             
+            {
                  todo.map((task:ITask,key:number)=>{
-                   return<DisplayTodo key={key} task={task}
-                   completeTask={completeTask}/>  
+                   return <Grid item sm={12} md={6}>
+                   <DisplayTodo key={key} task={task}
+                   completeTask={completeTask}/> 
+                   </Grid>  
                  })
              }
+              
+            </Grid>
+                   
         </div>
         
     );
