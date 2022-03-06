@@ -12,13 +12,15 @@ const Todo:FC = () => {
             setTask(event.target.value)
         }else{
             setDeadline(Number((event.target.value)))
-        }               
+        } 
+                     
     }
-    const addingTask=():void=>{
-
+    const addingTask=():void=>{   
     const newTask={task:task,deadline:deadline};
     setTodo([...todo,newTask])
     // console.log(todo)
+    setTask("");
+    setDeadline(0);
     }
 
      const completeTask=(taskNameToDelete:string):void=>{
@@ -29,10 +31,12 @@ const Todo:FC = () => {
         <div>
            <div>
            <input type="text" placeholder='My Task' 
-           name='task' 
+           name='task'
+           value={task} 
            onChange={handleChange}/>
            <br /> 
            <input type="number" placeholder='Deadline(In Hours)'name='deadline'
+           value={deadline}
            onChange={handleChange}/>
            <br />
            <button onClick={addingTask} type='submit'>Add Task</button>

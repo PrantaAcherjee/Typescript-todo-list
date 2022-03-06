@@ -9,7 +9,7 @@ const DisplayTodo = ({task,completeTask}:props) => {
         <div>
             <h4>{task.task}</h4>
             <h5>{task.deadline} Hours</h5>
-            <button onClick={()=>completeTask(task.task)}>Clear task</button>
+            <button onClick={()=>completeTask(task.task)}>Clear Task</button>
         </div>
     );
 };
